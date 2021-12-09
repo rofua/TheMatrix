@@ -19,5 +19,16 @@ const Prototype = () => {
 }
 
 */
+const css = '[id^=Click_Box] {border: 1px solid black;}'
 
-document.head.innerHTML += '<style>[id^=Click_Box] {border: 1px solid black;}</style>'
+const styleElement = document.createElement('style')
+styleElement.type = 'text/css';
+
+if (styleElement.styleSheet){
+  // This is required for IE8 and below.
+  styleElement.styleSheet.cssText = css;
+} else {
+  styleElement.appendChild(document.createTextNode(css));
+}
+
+document.getElementsByTagName("head")[0].appendChild(styleElement);
